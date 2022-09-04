@@ -8,4 +8,9 @@ export default {
       url: "https://fakestoreapi.com/products",
       
     }),
+    getItemDetail: (id) => 
+    axios({
+      method: "GET",
+      url: `https://fakestoreapi.com/products/${id}`,
+    }),
 };

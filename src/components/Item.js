@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { CardActionArea } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Item = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
@@ -32,49 +34,58 @@ const Item = ({ item }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={item.image}
-        alt="green iguana"
-      />
+      <CardActionArea
+        component={Link}
+        to={{ pathname: "/itemDetailContainer/" + item.id }}
+      >
+        <CardMedia
+          component="img"
+          height="140"
+          image={item.image}
+          alt={item.title}
+        />
+      </CardActionArea>
       <CardContent sx={{ backgroundColor: "#ECEFF1" }}>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          sx={{
-            width: 300,
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
+        <CardActionArea
+          component={Link}
+          to={{ pathname: "/itemDetailContainer/" + item.id }}
         >
-          {item.title}
-        </Typography>
-        <Stack direction="row" spacing={2} mb={2}>
-          <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>
-            Price
-          </Typography>
           <Typography
-            sx={{ fontWeight: "bold", color: "blue", fontSize: "20px" }}
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              width: 300,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
           >
-            $ {item.price}
+            {item.title}
           </Typography>
-        </Stack>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{
-            width: 300,
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {item.description}
-        </Typography>
-
+          <Stack direction="row" spacing={2} mb={2}>
+            <Typography sx={{ fontWeight: "bold", fontSize: "20px" }}>
+              Price
+            </Typography>
+            <Typography
+              sx={{ fontWeight: "bold", color: "blue", fontSize: "20px" }}
+            >
+              $ {item.price}
+            </Typography>
+          </Stack>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              width: 300,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {item.description}
+          </Typography>
+        </CardActionArea>
         <Stack
           direction="row"
           justifyContent="space-between"

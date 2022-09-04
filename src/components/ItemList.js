@@ -29,7 +29,7 @@ export default function ItemList() {
       <Grid container spacing={{ xs: 2, md: 5 }}>
         {datos &&
           datos.map((dato) => (
-            <Grid item md={4} >
+            <Grid item md={4} key={dato.id}>
               <Item item={dato} />
             </Grid>
           ))}
