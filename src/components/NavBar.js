@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link as ReactLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -95,7 +96,7 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseNavMenu}>
-                  <Link href={item.path} underline="none" xs={{textDecoration:'none'}}>
+                  <Link component={ReactLink} to={item.path} underline="none" xs={{ textDecoration: 'none' }}>
                     <Typography textAlign="center">{item.name}</Typography>
                   </Link>
                 </MenuItem>
@@ -118,18 +119,17 @@ const ResponsiveAppBar = () => {
               textDecoration: "none",
             }}
           >
-            TT
+            T - T
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((item) => (
               <Button
                 key={item.name}
-                href={item.path}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+
               >
-                {item.name}
+                <Link component={ReactLink} to={item.path} underline="none" color="white" xs={{ textDecoration: 'none', my: 2, display: "block" }}>  {item.name} </Link>
               </Button>
             ))}
           </Box>
