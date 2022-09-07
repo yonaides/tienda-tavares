@@ -1766,21 +1766,7 @@
     "prop-types" "^15.8.1"
     "react-is" "^18.2.0"
 
-"@mui/base@5.0.0-alpha.96":
-  "integrity" "sha512-GZf2YguepLFMWGG8vQNLRl7FlXPDeyxQBYgrkHxwNJYeRw55rrGrJxHzL1iCbk71VZ2IIAIs5IAxNpyHK9iqPQ=="
-  "resolved" "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.96.tgz"
-  "version" "5.0.0-alpha.96"
-  dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@emotion/is-prop-valid" "^1.2.0"
-    "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.3"
-    "@popperjs/core" "^2.11.6"
-    "clsx" "^1.2.1"
-    "prop-types" "^15.8.1"
-    "react-is" "^18.2.0"
-
-"@mui/core-downloads-tracker@^5.10.1", "@mui/core-downloads-tracker@^5.10.4":
+"@mui/core-downloads-tracker@^5.10.1":
   "integrity" "sha512-VGekVa9dleJ+ii47+gXvKUV5a11T0nsjXN8bk5NqiJRQWRCAhbTHgsfZuctNcMeLW9FSf2gu6U0k2U6rhABKcA=="
   "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.4.tgz"
   "version" "5.10.4"
@@ -1791,22 +1777,6 @@
   "version" "5.8.4"
   dependencies:
     "@babel/runtime" "^7.17.2"
-
-"@mui/joy@^5.0.0-alpha.44":
-  "integrity" "sha512-gmXBZSDwtesIPPcYKmb81oiJAXns0Hb7KVzUjpsVl0TDNvw+FEFIDFTqPxUV6jm9rA0Ln9PoYBpgm0tszliowA=="
-  "resolved" "https://registry.npmjs.org/@mui/joy/-/joy-5.0.0-alpha.44.tgz"
-  "version" "5.0.0-alpha.44"
-  dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@mui/base" "5.0.0-alpha.96"
-    "@mui/core-downloads-tracker" "^5.10.4"
-    "@mui/system" "^5.10.4"
-    "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.3"
-    "clsx" "^1.2.1"
-    "csstype" "^3.1.0"
-    "prop-types" "^15.8.1"
-    "react-is" "^18.2.0"
 
 "@mui/material@^5.0.0", "@mui/material@^5.10.1":
   "integrity" "sha512-E9fhskX6TwUdAzpL5+yoAzRxb6wY4oBqmBVlgUuLndSwPRYxXoGu+z74NxbDEkxUoHdb7vrDcRTswpB6ykDITQ=="
@@ -1845,7 +1815,7 @@
     "csstype" "^3.1.0"
     "prop-types" "^15.8.1"
 
-"@mui/system@^5.10.1", "@mui/system@^5.10.4":
+"@mui/system@^5.10.1":
   "integrity" "sha512-fE7LtYStPHPfq7EJXEVLQGvz23pS5YwSI7A4mWEFyyW21hHUh0c1opZXb7caHJsUTiBoC22W7R8GGfbVdSOnZA=="
   "resolved" "https://registry.npmjs.org/@mui/system/-/system-5.10.4.tgz"
   "version" "5.10.4"
