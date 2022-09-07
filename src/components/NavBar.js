@@ -10,11 +10,17 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
+import Link from "@mui/material/Link";
 import MenuItem from "@mui/material/MenuItem";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import CartWidget from "./CartWidget";
 
-const pages = ["Productos", "Ofertas", "Contactos"];
+const pages = [
+  { name: `Home`, path: `/` },
+  { name: `Ofertas`, path: `/ofertas` },
+  { name: `Contactos`, path: `/contactos` },
+];
+
 const settings = ["Perfil", "Cuenta", "Logout"];
 
 const ResponsiveAppBar = () => {
@@ -56,7 +62,7 @@ const ResponsiveAppBar = () => {
               textDecoration: "none",
             }}
           >
-          Tiendas Tavares
+            Tiendas Tavares
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -87,9 +93,11 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((item) => (
+                <MenuItem key={item.name} onClick={handleCloseNavMenu}>
+                  <Link href={item.path} underline="none" xs={{textDecoration:'none'}}>
+                    <Typography textAlign="center">{item.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,13 +122,14 @@ const ResponsiveAppBar = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((item) => (
               <Button
-                key={page}
+                key={item.name}
+                href={item.path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {item.name}
               </Button>
             ))}
           </Box>

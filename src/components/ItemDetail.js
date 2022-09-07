@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import Loading from "./Loading";
 import api from "../utils/api";
 
 function ItemDetail() {
@@ -50,7 +51,7 @@ function ItemDetail() {
   }, [id]);
 
   if (dato === undefined) {
-    return <p> Searching... </p>;
+    return <Loading/>;
   }
 
   return (

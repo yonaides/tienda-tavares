@@ -1,28 +1,43 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Container from "@mui/material/Container";
+import { Container } from "@mui/material";
 
-import NavBar from "./components/NavBar";
 import Home from "./Home";
+import ItemListContainer from "./components/ItemListContainer";
+import NoMatch from "./components/NoMatch";
+import NavBar from "./components/NavBar";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import Contactos from "./components/Contactos";
+import Ofertas from "./components/Ofertas";
+import Filtros from "./components/Filtros";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Container
-        component="main"
-        sx={{ display: "flex", flexGrow: 1, marginTop: "15px" }}
-      >
-        <Router>
+      <Router>
+        <NavBar />
+        <Filtros />
+        <Container
+          component="main"
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            marginTop: "15px",
+            justifyContent: "center",
+          }}
+        >
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route index element={<Home />} />
+            <Route path="filtros/:category" element={<ItemListContainer />} />
             <Route path="/itemDetailContainer">
-              <Route path=":id" element={<ItemDetailContainer />}/>
+              <Route path=":id" element={<ItemDetailContainer />} />
             </Route>
+            <Route path="/contactos" element={<Contactos />} />
+            <Route path="/ofertas" element={<Ofertas />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
-        </Router>
-      </Container>
+        </Container>
+      </Router>
     </>
   );
 }

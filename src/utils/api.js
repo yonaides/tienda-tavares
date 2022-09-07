@@ -13,4 +13,10 @@ export default {
       method: "GET",
       url: `https://fakestoreapi.com/products/${id}`,
     }),
+    getFilterData: (category) => 
+    axios({
+      method: "GET",
+      url: `https://fakestoreapi.com/products/category/${category}`,
+      
+    })
 };

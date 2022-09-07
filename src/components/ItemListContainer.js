@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 
 export default function ItemListContainer() {
-  return <ItemList />;
+  const { category } = useParams();
+  
+  return <ItemList  category={category}/>;
 }

@@ -40,7 +40,8 @@ const Item = ({ item }) => {
       >
         <CardMedia
           component="img"
-          height="140"
+          height="310"
+          width="150"
           image={item.image}
           alt={item.title}
         />

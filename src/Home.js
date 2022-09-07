@@ -2,11 +2,7 @@ import React from "react";
 import ItemListContainer from "./components/ItemListContainer";
 
 function Home() {
-  return (
-    <>
-      <ItemListContainer />
-    </>
-  );
+  return <ItemListContainer />;
 }
 
 export default Home;
