@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import Item from "./Item";
 import api from "../utils/api";
+import Loading from "./Loading";
 
 export default function ItemList({ category }) {
   const [datos, setDatos] = useState();
@@ -33,13 +34,11 @@ export default function ItemList({ category }) {
       }
     }
 
-    setTimeout(() => {
-      obtenerDatos();
-    }, "2000");
+    obtenerDatos();
   }, [category]);
 
   if (loading === true) {
-    return 'wait'
+    return <Loading/>;
   }
   return (
     <Box sx={{ flexGrow: 1 }}>

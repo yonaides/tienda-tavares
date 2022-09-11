@@ -1,7 +1,7 @@
-import React from "react";
 import ItemListContainer from "./components/ItemListContainer";
 
-function Home() {
+function Home() {  
+  
   return <ItemListContainer />;
 }
 

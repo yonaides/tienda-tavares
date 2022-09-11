@@ -18,8 +18,8 @@ import CartWidget from "./CartWidget";
 
 const pages = [
   { name: `Home`, path: `/` },
-  { name: `Ofertas`, path: `/ofertas` },
-  { name: `Contactos`, path: `/contactos` },
+  { name: `Offers`, path: `/ofertas` },
+  { name: `Contacts`, path: `/contactos` },
 ];
 
 const settings = ["Perfil", "Cuenta", "Logout"];
@@ -96,7 +96,7 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseNavMenu}>
-                  <Link component={ReactLink} to={item.path} underline="none" xs={{ textDecoration: 'none' }}>
+                  <Link component={ReactLink} to={item.path} color="white" underline="none" xs={{ textDecoration: 'none' }}>
                     <Typography textAlign="center">{item.name}</Typography>
                   </Link>
                 </MenuItem>

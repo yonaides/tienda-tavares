@@ -2,35 +2,23 @@ import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import { useParams } from "react-router-dom";
-import { Button, IconButton, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import { Typography } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import ItemCount from "./ItemCount";
 import Loading from "./Loading";
 import api from "../utils/api";
 
 function ItemDetail() {
   const { id } = useParams();
   const [dato, setDato] = useState();
-
-  const [quantity, setQuantity] = useState(1);
+  const [isCount, setCount] = useState(0);
   const stock = 10;
 
-  const add = () => {
-    if (quantity + 1 > stock) {
-      alert("Cantidad mayor al stock");
-      return;
-    }
-    setQuantity(quantity + 1);
-  };
+  const onAdd = (count) => {
 
-  const remove = () => {
-    if (quantity - 1 <= 0) {
-      setQuantity(1);
-    } else {
-      setQuantity(quantity - 1);
-    }
+    console.log(count);
+    setCount(count);
   };
 
   useEffect(() => {
@@ -44,14 +32,11 @@ function ItemDetail() {
           console.log(error);
         });
     }
-
-    setTimeout(() => {
-      obtenerDatos();
-    }, "2000");
+    obtenerDatos();
   }, [id]);
 
   if (dato === undefined) {
-    return <Loading/>;
+    return <Loading />;
   }
 
   return (
@@ -81,31 +66,7 @@ function ItemDetail() {
             US$ {dato.price}
           </Typography>
         </Stack>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          mb={2}
-          mt={2}
-          sx={{ backgroundColor: "#FAFAFA" }}
-        >
-          <IconButton size="large" sx={{ color: "black" }} onClick={remove}>
-            <RemoveIcon />
-          </IconButton>
-          <Typography sx={{ mt: "5px", fontWeight: "bold", color: "blue" }}>
-            {quantity}
-          </Typography>
-
-          <IconButton size="large" sx={{ color: "black" }} onClick={add}>
-            <AddIcon />
-          </IconButton>          
-        </Stack>
-        <Button
-          variant="contained"
-          sx={{ width: "100%", m: "3px"}}
-          size="large"
-        >
-          Agregar al carrito
-        </Button>
+        <ItemCount onAdd ={onAdd} stock={stock} />
       </Grid>
     </Grid>
   );
