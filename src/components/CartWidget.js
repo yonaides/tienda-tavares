@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link as ReactLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+import Link from "@mui/material/Link";
+import { CartContext } from "../context/CartContext";
+import { Badge } from "@mui/material";
 
 export default function CartWidget() {
+  const values = useContext(CartContext);
+  const { productCartList } = values;
+
   return (
-    <Box sx={{ backgroundColor: "#283593", width: "50px", height: "50px", display:{xs:'none', md:'flex'} }}>
+    
       <Box
         sx={{
           display: "flex",
@@ -14,8 +21,18 @@ export default function CartWidget() {
           marginTop: "20px",
         }}
       >
-        <LocalGroceryStoreIcon /> 4
+        <Link
+          component={ReactLink}
+          to="/cart"
+          color="white"
+          underline="none"
+          xs={{ textDecoration: "none" }}
+        >
+          <Badge color="secondary" badgeContent={productCartList.length}>
+            <LocalGroceryStoreIcon />
+          </Badge>
+        </Link>
       </Box>
-    </Box>
+    
   );
 }

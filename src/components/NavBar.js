@@ -96,8 +96,8 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseNavMenu}>
-                  <Link component={ReactLink} to={item.path} color="white" underline="none" xs={{ textDecoration: 'none' }}>
-                    <Typography textAlign="center">{item.name}</Typography>
+                  <Link component={ReactLink} to={item.path} color="black" underline="none" xs={{ textDecoration: 'none' }}>
+                    <Typography textAlign="center">{item.name} </Typography>
                   </Link>
                 </MenuItem>
               ))}
@@ -127,7 +127,6 @@ const ResponsiveAppBar = () => {
               <Button
                 key={item.name}
                 onClick={handleCloseNavMenu}
-
               >
                 <Link component={ReactLink} to={item.path} underline="none" color="white" xs={{ textDecoration: 'none', my: 2, display: "block" }}>  {item.name} </Link>
               </Button>

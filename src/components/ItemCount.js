@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-const ItemCount = ({ onAdd, stock }) => {
+const ItemCount = ({ onAdd, stock, item }) => {
   const [quantity, setQuantity] = useState(1);
 
   const increaseCount = () => {
@@ -63,7 +63,7 @@ const ItemCount = ({ onAdd, stock }) => {
           variant="contained"
           sx={{ width: "100%", m: "3px" }}
           size="large"
-          onClick={() => onAdd(quantity)}
+          onClick={() => onAdd(item,quantity)}
         >
           Add to Cart
         </Button>

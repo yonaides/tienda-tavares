@@ -1,12 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { SnackbarProvider } from "notistack";
+import CartProvider  from "./context/CartContext";
+
 import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App/>
+    <SnackbarProvider
+      maxSnack={3}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+    >
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </SnackbarProvider>
   </React.StrictMode>
 );
 

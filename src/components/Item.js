@@ -13,7 +13,7 @@ const Item = ({ item }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea
         component={Link}
-        to={{ pathname: "/itemDetailContainer/" + item.id }}
+        to={{ pathname: "/product/" + item.id }}
       >
         <CardMedia
           component="img"
@@ -26,7 +26,7 @@ const Item = ({ item }) => {
       <CardContent sx={{ backgroundColor: "#ECEFF1" }}>
         <CardActionArea
           component={Link}
-          to={{ pathname: "/itemDetailContainer/" + item.id }}
+          to={{ pathname: "/product/" + item.id }}
         >
           <Typography
             gutterBottom
@@ -69,7 +69,7 @@ const Item = ({ item }) => {
         <Button
           component={Link}
           sx={{display:'flex', marginTop:1, }}
-          to={{ pathname: "/itemDetailContainer/" + item.id }}
+          to={{ pathname: "/product/" + item.id }}
           color="primary"
           size="large"
           variant="outlined"

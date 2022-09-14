@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import { useParams } from "react-router-dom";
 import { Typography } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import { useSnackbar } from "notistack";
+import { CartContext } from "../context/CartContext";
+
 import ItemCount from "./ItemCount";
 import Loading from "./Loading";
 import api from "../utils/api";
@@ -12,13 +15,22 @@ import api from "../utils/api";
 function ItemDetail() {
   const { id } = useParams();
   const [dato, setDato] = useState();
-  const [isCount, setCount] = useState(0);
+  const { enqueueSnackbar } = useSnackbar();
+  const values = useContext(CartContext);
+  const { addItem, isInCart, updateItem } = values;
   const stock = 10;
 
-  const onAdd = (count) => {
+  const onAdd = (item, quantity) => {
+    enqueueSnackbar("Product added", {
+      autoHideDuration: 1000,
+      variant: "info",
+    });
 
-    console.log(count);
-    setCount(count);
+    if (isInCart(item.id)) {
+      updateItem(item, quantity);
+    } else {
+      addItem(item, quantity);
+    }
   };
 
   useEffect(() => {
@@ -66,7 +78,7 @@ function ItemDetail() {
             US$ {dato.price}
           </Typography>
         </Stack>
-        <ItemCount onAdd ={onAdd} stock={stock} />
+        <ItemCount onAdd={onAdd} stock={stock} item={dato} />
       </Grid>
     </Grid>
   );
