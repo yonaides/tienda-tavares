@@ -23,6 +23,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "@mui/material/Link";
 import { CartContext } from "../context/CartContext";
+import numberWithCommas from '../utils/formatNumber';
 
 const ClearButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(amber[500]),
@@ -32,8 +33,7 @@ const ClearButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-//agregar removeItem
-//agregar clear
+
 const CartContainer = () => {
   const { productCartList, removeItem, clearItems } = useContext(CartContext);
 
@@ -125,13 +125,13 @@ const CartContainer = () => {
               <List>
                 <ListItem>
                   <Typography variant="h6">
-                    Subtotal $ (
+                    Total $ (
                     {productCartList.reduce((a, c) => a + c.quantity, 0)} items)
                     =
-                    {productCartList.reduce(
+                    {numberWithCommas( productCartList.reduce(
                       (a, c) => (a + c.quantity * c.price),
                       0
-                    ).toFixed(2)}
+                    ).toFixed(2))}
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -139,10 +139,9 @@ const CartContainer = () => {
                     onClick={checkoutHandler}
                     variant="contained"
                     color="primary"
-                    fullWidth
-                    
+                    fullWidth                    
                   >
-                    Check Out 
+                    Check Out
                     <ShoppingCartCheckoutIcon sx={{marginLeft:'15px'}}/>
                   </Button>
                 </ListItem>

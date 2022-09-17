@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link as ReactLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { CartContext } from "../context/CartContext";
 
 const ItemCount = ({ onAdd, stock, item }) => {
   const [quantity, setQuantity] = useState(1);
+  const values = useContext(CartContext);
+  const { productCartList } = values;
 
   const increaseCount = () => {
     if (quantity + 1 > stock) {
@@ -25,6 +30,8 @@ const ItemCount = ({ onAdd, stock, item }) => {
       setQuantity(quantity - 1);
     }
   };
+
+  const productItems = productCartList.length;
 
   return (
     <Grid container spacing={2}>
@@ -59,14 +66,35 @@ const ItemCount = ({ onAdd, stock, item }) => {
             <AddIcon />
           </IconButton>
         </Stack>
-        <Button
-          variant="contained"
-          sx={{ width: "100%", m: "3px" }}
-          size="large"
-          onClick={() => onAdd(item,quantity)}
+        <Box
+          sx={{
+            display: "flex",
+            height: "50px",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            
+          }}
         >
-          Add to Cart
-        </Button>
+          <Button
+            variant="contained"
+            sx={{ height: "50px", m:'4px' }}
+            size="large"
+            onClick={() => onAdd(item, quantity)}
+          >
+            Agregar al Carrito
+          </Button>
+          { productItems > 0 ? 
+          <Button
+            variant="contained"
+            sx={{ height: "50px", textAlign:'center' }}
+            size="large"
+            component={ReactLink}
+            to="/cart"
+            color="secondary"
+          >
+            Completar Compra
+          </Button>: ""}
+        </Box>
       </Grid>
     </Grid>
   );

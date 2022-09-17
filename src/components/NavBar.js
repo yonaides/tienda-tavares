@@ -96,39 +96,55 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((item) => (
                 <MenuItem key={item.name} onClick={handleCloseNavMenu}>
-                  <Link component={ReactLink} to={item.path} color="black" underline="none" xs={{ textDecoration: 'none' }}>
+                  <Link
+                    component={ReactLink}
+                    to={item.path}
+                    color="black"
+                    underline="none"
+                    xs={{ textDecoration: "none" }}
+                  >
                     <Typography textAlign="center">{item.name} </Typography>
                   </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <StorefrontIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 200,
-              color: "inherit",
-              textDecoration: "none",
-            }}
+          <Link
+            component={ReactLink}
+            to="/"
+            color="white"
+            underline="none"
+            xs={{ textDecoration: "none" }}
           >
-            T - T
-          </Typography>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 5,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                textDecoration: "none",
+              }}
+            >
+              Tienda Tavares
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((item) => (
-              <Button
-                key={item.name}
-                onClick={handleCloseNavMenu}
-              >
-                <Link component={ReactLink} to={item.path} underline="none" color="white" xs={{ textDecoration: 'none', my: 2, display: "block" }}>  {item.name} </Link>
+              <Button key={item.name} onClick={handleCloseNavMenu}>
+                <Link
+                  component={ReactLink}
+                  to={item.path}
+                  underline="none"
+                  color="white"
+                  xs={{ textDecoration: "none", my: 2, display: "block" }}
+                >
+                  {" "}
+                  {item.name}{" "}
+                </Link>
               </Button>
             ))}
           </Box>
