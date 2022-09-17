@@ -72,28 +72,30 @@ const ItemCount = ({ onAdd, stock, item }) => {
             height: "50px",
             justifyContent: "space-evenly",
             alignItems: "center",
-            
           }}
         >
           <Button
             variant="contained"
-            sx={{ height: "50px", m:'4px' }}
+            sx={{ height: "50px", m: "4px" }}
             size="large"
             onClick={() => onAdd(item, quantity)}
           >
             Agregar al Carrito
           </Button>
-          { productItems > 0 ? 
-          <Button
-            variant="contained"
-            sx={{ height: "50px", textAlign:'center' }}
-            size="large"
-            component={ReactLink}
-            to="/cart"
-            color="secondary"
-          >
-            Completar Compra
-          </Button>: ""}
+          {productItems > 0 ? (
+            <Button
+              component={ReactLink}
+              to="/cart"
+              variant="contained"
+              sx={{ height: "50px", textAlign: "center" }}
+              size="large"
+              color="secondary"
+            >
+              Completar Compra
+            </Button>
+          ) : (
+            ""
+          )}
         </Box>
       </Grid>
     </Grid>

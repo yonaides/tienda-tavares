@@ -8,13 +8,9 @@ import { CardActionArea, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Item = ({ item }) => {
-  
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea
-        component={Link}
-        to={{ pathname: "/product/" + item.id }}
-      >
+      <CardActionArea component={Link} to={{ pathname: "/product/" + item.id }}>
         <CardMedia
           component="img"
           height="310"
@@ -65,18 +61,17 @@ const Item = ({ item }) => {
           </Typography>
         </CardActionArea>
       </CardContent>
-      
-        <Button
-          component={Link}
-          sx={{display:'flex', marginTop:1, }}
-          to={{ pathname: "/product/" + item.id }}
-          color="primary"
-          size="large"
-          variant="outlined"
-        >
-          View
-        </Button>
-      
+
+      <Button
+        component={Link}
+        sx={{ display: "flex", marginTop: 1 }}
+        to={{ pathname: "/product/" + item.id }}
+        color="primary"
+        size="large"
+        variant="outlined"
+      >
+        View
+      </Button>
     </Card>
   );
 };

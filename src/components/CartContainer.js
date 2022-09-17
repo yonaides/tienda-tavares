@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Link as ReactLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { amber } from "@mui/material/colors";
 import ClearIcon from "@mui/icons-material/Clear";
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
 import {
   Box,
@@ -23,7 +24,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "@mui/material/Link";
 import { CartContext } from "../context/CartContext";
-import numberWithCommas from '../utils/formatNumber';
+import numberWithCommas from "../utils/formatNumber";
 
 const ClearButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(amber[500]),
@@ -33,15 +34,17 @@ const ClearButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-
 const CartContainer = () => {
   const { productCartList, removeItem, clearItems } = useContext(CartContext);
+  let navigate = useNavigate();
 
   const removeItemHandler = (id) => {
     removeItem(id);
   };
 
-  const checkoutHandler = () => {};
+  const checkoutHandler = () => {
+    navigate("/checkout");
+  };
 
   const clearAllItem = () => {
     clearItems();
@@ -59,14 +62,15 @@ const CartContainer = () => {
             to="/"
             color="black"
             underline="none"
-            xs={{ textDecoration: "none" }}>
+            xs={{ textDecoration: "none" }}
+          >
             <Typography textAlign="center">
               Cart is empty. Go to Shopping
             </Typography>
           </Link>
         </Box>
       ) : (
-        <Grid container spacing={4} >
+        <Grid container spacing={4}>
           <Grid item md={8} xs={12} p={10}>
             <TableContainer>
               <Table>
@@ -128,10 +132,11 @@ const CartContainer = () => {
                     Total $ (
                     {productCartList.reduce((a, c) => a + c.quantity, 0)} items)
                     =
-                    {numberWithCommas( productCartList.reduce(
-                      (a, c) => (a + c.quantity * c.price),
-                      0
-                    ).toFixed(2))}
+                    {numberWithCommas(
+                      productCartList
+                        .reduce((a, c) => a + c.quantity * c.price, 0)
+                        .toFixed(2)
+                    )}
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -139,10 +144,10 @@ const CartContainer = () => {
                     onClick={checkoutHandler}
                     variant="contained"
                     color="primary"
-                    fullWidth                    
+                    fullWidth
                   >
                     Check Out
-                    <ShoppingCartCheckoutIcon sx={{marginLeft:'15px'}}/>
+                    <ShoppingCartCheckoutIcon sx={{ marginLeft: "15px" }} />
                   </Button>
                 </ListItem>
                 <ListItem>
@@ -152,7 +157,7 @@ const CartContainer = () => {
                     fullWidth
                   >
                     Clear Cart
-                    <ClearIcon sx={{marginLeft:'15px'}}/>
+                    <ClearIcon sx={{ marginLeft: "15px" }} />
                   </ClearButton>
                 </ListItem>
               </List>
