@@ -12,55 +12,55 @@ const CheckOut = () => {
       <List>
         <ListItem>
           <TextField
+            id="fullname"
             variant="outlined"
             fullWidth
-            id="name"
-            label="Name"
-            inputProps={{ type: "name" }}
+            label="FullName"
+            inputProps={{ type: "fullname" }}
           ></TextField>
         </ListItem>
         <ListItem>
           <TextField
             variant="outlined"
             fullWidth
-            id="email"
-            label="Email"
-            inputProps={{ type: "email" }}
+            id="address"
+            label="Address"
+            inputProps={{ type: "address" }}
+          ></TextField>
+        </ListItem>        
+        <ListItem>
+          <TextField
+            id="city"
+            variant="outlined"
+            fullWidth
+            label="City"
+            inputProps={{ type: "city" }}
           ></TextField>
         </ListItem>
         <ListItem>
-          
-              <TextField
-                variant="outlined"
-                fullWidth
-                id="password"
-                label="Password"
-                inputProps={{ type: "password" }}
-          
-              ></TextField>
-          
+          <TextField
+            id="codePostal"
+            variant="outlined"
+            fullWidth
+            label="Code Postal"
+            inputProps={{ type: "code" }}
+          ></TextField>
         </ListItem>
         <ListItem>
-          
-              <TextField
-                variant="outlined"
-                fullWidth
-                id="confirmPassword"
-                label="Confirm Password"
-                inputProps={{ type: "password" }}
-                
-              ></TextField>
-            
+          <TextField
+            id="country"
+            variant="outlined"
+            fullWidth
+            label="Country"
+            inputProps={{ type: "country" }}
+          ></TextField>
         </ListItem>
         <ListItem>
           <Button variant="contained" type="submit" fullWidth color="primary">
             Register
           </Button>
         </ListItem>
-        <ListItem>
-          
-         
-        </ListItem>
+        <ListItem></ListItem>
       </List>
     </Form>
   );

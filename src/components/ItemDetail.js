@@ -38,7 +38,7 @@ function ItemDetail() {
       api
         .getItemDetail(id)
         .then((response) => {
-          setDato(response.data);
+          setDato(response);
         })
         .catch((error) => {
           console.log(error);

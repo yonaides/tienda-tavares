@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
+
+/*import {db} from '../utils/firebase';
+import {doc, getDoc} from 'firebase/firestore';
+*/
+
 import Item from "./Item";
 import api from "../utils/api";
 import Loading from "./Loading";
@@ -15,7 +20,7 @@ export default function ItemList({ category }) {
         api
           .getData()
           .then((response) => {
-            setDatos(response.data);
+            setDatos(response);
             setLoading(false);
           })
           .catch((error) => {
@@ -38,7 +43,7 @@ export default function ItemList({ category }) {
   }, [category]);
 
   if (loading === true) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <Box sx={{ flexGrow: 1 }}>

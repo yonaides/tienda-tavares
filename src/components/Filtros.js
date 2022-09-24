@@ -13,18 +13,16 @@ const Filtros = () => {
       api
         .getData()
         .then((response) => {
-          setDatos(response.data);
+          setDatos(response);
           setLoading(false);
-          getCategories(response.data);
+          getCategories(response);
         })
         .catch((error) => {
           console.log(error);
         });
     }
 
-    setTimeout(() => {
-      obtenerDatos();
-    }, "2000");
+    obtenerDatos();
   }, []);
 
   function getCategories(data) {

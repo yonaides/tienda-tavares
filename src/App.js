@@ -37,7 +37,7 @@ function App() {
               <Route path=":id" element={<ItemDetailContainer />} />
             </Route>
             <Route path="/contactos" element={<Contactos />} />
-            <Route path="/ofertas" element={<Ofertas />} />
+            <Route path="/ofertas" element={<Ofertas />} />na
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Container>
