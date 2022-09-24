@@ -30,7 +30,7 @@ export default function ItemList({ category }) {
         api
           .getFilterData(category)
           .then((response) => {
-            setDatos(response.data);
+            setDatos(response);
             setLoading(false);
           })
           .catch((error) => {
