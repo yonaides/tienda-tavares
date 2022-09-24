@@ -47,8 +47,5 @@ export default {
 
     return filterProduct;
   },
-  /*axios({
-      method: "GET",
-      url: `https://fakestoreapi.com/products/category/${category}`,
-    }),*/
+  
 };
