@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import CartProvider from "./context/CartContext";
+import OrderProvider from "./context/OrderContext";
 import { appTheme } from "./utils/theme";
 
 import "./index.css";
@@ -19,10 +20,12 @@ root.render(
       }}
     >
       <CartProvider>
-        <ThemeProvider theme={appTheme}>
-          <CssBaseline enableColorScheme />
-          <App />
-        </ThemeProvider>
+        <OrderProvider>
+          <ThemeProvider theme={appTheme}>
+            <CssBaseline enableColorScheme />
+            <App />
+          </ThemeProvider>
+        </OrderProvider>
       </CartProvider>
     </SnackbarProvider>
   </React.StrictMode>

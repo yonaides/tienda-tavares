@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link as ReactLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { amber } from "@mui/material/colors";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -20,11 +19,14 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Modal,
+  
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Link from "@mui/material/Link";
 import { CartContext } from "../context/CartContext";
 import numberWithCommas from "../utils/formatNumber";
+import CheckOut from "./CheckOut";
 
 const ClearButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(amber[500]),
@@ -34,16 +36,27 @@ const ClearButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 500,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const CartContainer = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const { productCartList, removeItem, clearItems } = useContext(CartContext);
-  let navigate = useNavigate();
 
   const removeItemHandler = (id) => {
     removeItem(id);
-  };
-
-  const checkoutHandler = () => {
-    navigate("/checkout");
   };
 
   const clearAllItem = () => {
@@ -52,6 +65,7 @@ const CartContainer = () => {
 
   return (
     <div>
+      
       <Typography component="h1" variant="h6">
         Shopping Cart
       </Typography>
@@ -141,7 +155,7 @@ const CartContainer = () => {
                 </ListItem>
                 <ListItem>
                   <Button
-                    onClick={checkoutHandler}
+                    onClick={handleOpen}
                     variant="contained"
                     color="primary"
                     fullWidth
@@ -149,6 +163,20 @@ const CartContainer = () => {
                     Check Out
                     <ShoppingCartCheckoutIcon sx={{ marginLeft: "15px" }} />
                   </Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <CheckOut
+                        items={productCartList}
+                        cancel={handleClose}
+                        clear={clearAllItem}
+                      />
+                    </Box>
+                  </Modal>
                 </ListItem>
                 <ListItem>
                   <ClearButton

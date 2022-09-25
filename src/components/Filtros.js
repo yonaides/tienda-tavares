@@ -11,7 +11,7 @@ const Filtros = () => {
   useEffect(() => {
     function obtenerDatos() {
       api
-        .getData()
+        .getItems()
         .then((response) => {
           setDatos(response);
           setLoading(false);

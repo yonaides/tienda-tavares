@@ -1,63 +1,101 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Button, List, ListItem, TextField, Typography } from "@mui/material";
-import { Link as ReactLink } from "react-router-dom";
+import { collection, doc, addDoc, Firestore } from "firebase/firestore";
+import { useSnackbar } from "notistack";
+import { db } from "../utils/firebase";
 import Form from "../components/Form";
+import { OrderContext } from "../context/OrderContext";
 
-const CheckOut = () => {
+const CheckOut = ({ items, cancel, clear }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
+
+  const values = useContext(OrderContext);
+  const { setOrders } = values;
+
+  const regitrar = (event) => {
+    event.preventDefault();
+
+    const orders = {
+      buyer: {
+        name,
+        email,
+        phone,
+      },
+      items,
+      total: items.reduce((a, c) => a + c.quantity * c.price, 0).toFixed(2),
+      date: new Date().toString(),
+    };
+
+    const ordersRef = collection(db, "orders");
+
+    addDoc(ordersRef, orders).then((response) => {
+      setOrders(response);
+      enqueueSnackbar("Order complete", {
+        autoHideDuration: 1000,
+        variant: "success",
+      });
+      cancel();
+      clear();
+    });
+  };
+
   return (
     <Form>
       <Typography component="h1" variant="h6">
-        User Register
+        Complete shopping
       </Typography>
       <List>
         <ListItem>
           <TextField
-            id="fullname"
+            id="name"
             variant="outlined"
             fullWidth
             label="FullName"
             inputProps={{ type: "fullname" }}
+            onChange={(e) => setName(e.target.value)}
           ></TextField>
         </ListItem>
         <ListItem>
           <TextField
+            id="phone"
             variant="outlined"
             fullWidth
-            id="address"
-            label="Address"
-            inputProps={{ type: "address" }}
-          ></TextField>
-        </ListItem>        
-        <ListItem>
-          <TextField
-            id="city"
-            variant="outlined"
-            fullWidth
-            label="City"
-            inputProps={{ type: "city" }}
+            label="phone"
+            inputProps={{ type: "phone" }}
+            onChange={(e) => setPhone(e.target.value)}
           ></TextField>
         </ListItem>
         <ListItem>
           <TextField
-            id="codePostal"
+            id="email"
             variant="outlined"
             fullWidth
-            label="Code Postal"
-            inputProps={{ type: "code" }}
+            label="Email"
+            inputProps={{ type: "email" }}
+            onChange={(e) => setEmail(e.target.value)}
           ></TextField>
         </ListItem>
         <ListItem>
-          <TextField
-            id="country"
-            variant="outlined"
+          <Button
+            type="submit"
+            variant="contained"
+            onClick={regitrar}
             fullWidth
-            label="Country"
-            inputProps={{ type: "country" }}
-          ></TextField>
-        </ListItem>
-        <ListItem>
-          <Button variant="contained" type="submit" fullWidth color="primary">
-            Register
+            color="primary"
+            sx={{ mr: 5 }}
+          >
+            Complete
+          </Button>
+          <Button
+            variant="contained"
+            onClick={cancel}
+            fullWidth
+            color="secondary"
+          >
+            Cancel
           </Button>
         </ListItem>
         <ListItem></ListItem>
