@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { Button, List, ListItem, TextField, Typography } from "@mui/material";
-import { collection, doc, addDoc, Firestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useSnackbar } from "notistack";
 import { db } from "../utils/firebase";
 import Form from "../components/Form";
@@ -42,6 +42,7 @@ const CheckOut = ({ items, cancel, clear }) => {
     });
   };
 
+  
   return (
     <Form>
       <Typography component="h1" variant="h6">
@@ -51,11 +52,12 @@ const CheckOut = ({ items, cancel, clear }) => {
         <ListItem>
           <TextField
             id="name"
+            label="FullName"
             variant="outlined"
             fullWidth
-            label="FullName"
             inputProps={{ type: "fullname" }}
             onChange={(e) => setName(e.target.value)}
+            autoFocus={true}
           ></TextField>
         </ListItem>
         <ListItem>
@@ -66,6 +68,7 @@ const CheckOut = ({ items, cancel, clear }) => {
             label="phone"
             inputProps={{ type: "phone" }}
             onChange={(e) => setPhone(e.target.value)}
+            autoFocus
           ></TextField>
         </ListItem>
         <ListItem>

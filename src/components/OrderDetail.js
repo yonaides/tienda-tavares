@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   TableContainer,
@@ -9,7 +9,6 @@ import {
   TableBody,
 } from "@mui/material";
 import api from "../utils/api";
-import { OrderContext } from "../context/OrderContext";
 import Detail from "./Detail";
 
 const OrderDetail = () => {
@@ -38,7 +37,7 @@ const OrderDetail = () => {
       <Grid item md={12} xs={12}>
         <TableContainer>
           <Table>
-            <TableHead>
+            <TableHead sx={{backgroundColor:'#FFE0B2'}}>
               <TableRow>
                 <TableCell>Id Orden</TableCell>
                 <TableCell>Fecha</TableCell>

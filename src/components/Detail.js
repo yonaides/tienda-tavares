@@ -25,7 +25,11 @@ const Detail = ({ order }) => {
           <Typography>{order.id}</Typography>
         </TableCell>
         <TableCell>{order.date}</TableCell>
-        <TableCell>{order.total}</TableCell>
+        <TableCell>
+          <Typography variant="h6" gutterBottom component="div">
+            {order.total}
+          </Typography>
+        </TableCell>
         <TableCell align="right">
           <IconButton
             aria-label="expand row"
@@ -49,17 +53,27 @@ const Detail = ({ order }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Customer</TableCell>
-                    <TableCell>item</TableCell>
-                    <TableCell>price</TableCell>
-                    <TableCell>Quantity</TableCell>
+                    <TableCell>Item</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Total price ($)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {order.items.map((item, index) => (
                     <TableRow key={item.id}>
-                      <TableCell>{order.buyer.name}</TableCell>                      
-                      <TableCell>{item.title}</TableCell>
+                      <TableCell>{order.buyer.name}</TableCell>
+                      <TableCell>
+                        <Link
+                          component={ReactLink}
+                          to={{ pathname: "/product/" + item.id }}
+                          color="black"
+                          underline="none"
+                          xs={{ textDecoration: "none" }}
+                        >
+                          {item.title}
+                        </Link>
+                      </TableCell>
                       <TableCell>{item.price}</TableCell>
                       <TableCell align="right">{item.quantity}</TableCell>
                       <TableCell align="right">
