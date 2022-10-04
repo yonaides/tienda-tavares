@@ -7,8 +7,6 @@ import ItemListContainer from "./components/ItemListContainer";
 import NoMatch from "./components/NoMatch";
 import NavBar from "./components/NavBar";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import Contactos from "./components/Contactos";
-import Ofertas from "./components/Ofertas";
 import Filtros from "./components/Filtros";
 import CartContainer from "./components/CartContainer";
 import CheckOut from "./components/CheckOut";
@@ -37,9 +35,7 @@ function App() {
             <Route path="filtros/:category" element={<ItemListContainer />} />
             <Route path="/product">
               <Route path=":id" element={<ItemDetailContainer />} />
-            </Route>
-            <Route path="/contactos" element={<Contactos />} />
-            <Route path="/ofertas" element={<Ofertas />} />na
+            </Route>            
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Container>

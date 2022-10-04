@@ -14,10 +14,6 @@ import Detail from "./Detail";
 const OrderDetail = () => {
   const [allOrders, setAllOrder] = useState();
 
-  /*const values = useContext(OrderContext);
-  const { orders } = values;
-  const { items } = orders;*/
-
   useEffect(() => {
     function obtenerDatos() {
       api

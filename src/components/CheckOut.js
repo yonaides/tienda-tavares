@@ -1,23 +1,25 @@
-import React, { useState, useContext, useCallback } from "react";
+import React, { useContext } from "react";
 import { Button, List, ListItem, TextField, Typography } from "@mui/material";
 import { collection, addDoc } from "firebase/firestore";
 import { useSnackbar } from "notistack";
+import { Controller, useForm } from "react-hook-form";
 import { db } from "../utils/firebase";
 import Form from "../components/Form";
 import { OrderContext } from "../context/OrderContext";
 
 const CheckOut = ({ items, cancel, clear }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const { enqueueSnackbar } = useSnackbar();
 
   const values = useContext(OrderContext);
   const { setOrders } = values;
 
-  const regitrar = (event) => {
-    event.preventDefault();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
+  const regitrar = ({ name, email, phone }) => {
     const orders = {
       buyer: {
         name,
@@ -42,50 +44,97 @@ const CheckOut = ({ items, cancel, clear }) => {
     });
   };
 
-  
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(regitrar)}>
       <Typography component="h1" variant="h6">
-        Complete shopping
+        Complete registration for shopping
       </Typography>
       <List>
         <ListItem>
-          <TextField
-            id="name"
-            label="FullName"
-            variant="outlined"
-            fullWidth
-            inputProps={{ type: "fullname" }}
-            onChange={(e) => setName(e.target.value)}
-            autoFocus={true}
-          ></TextField>
+          <Controller
+            name="name"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+              minLength: 2,
+            }}
+            render={({ field }) => (
+              <TextField
+                id="name"
+                fullWidth
+                label="FullName"
+                variant="outlined"
+                autoFocus={true}
+                inputProps={{ type: "name" }}
+                error={Boolean(errors.name)}
+                helperText={
+                  errors.name
+                    ? errors.name.type === "minLength"
+                      ? "Full name length is more than 2"
+                      : "Full name is required"
+                    : ""
+                }
+                {...field}
+              ></TextField>
+            )}
+          ></Controller>
         </ListItem>
         <ListItem>
-          <TextField
-            id="phone"
-            variant="outlined"
-            fullWidth
-            label="phone"
-            inputProps={{ type: "phone" }}
-            onChange={(e) => setPhone(e.target.value)}
-            autoFocus
-          ></TextField>
+          <Controller
+            name="phone"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+            }}
+            render={({ field }) => (
+              <TextField
+                id="phone"
+                variant="outlined"
+                label="phone"
+                inputProps={{ type: "phone" }}
+                error={Boolean(errors.phone)}
+                helperText={errors.phone ? "Full phone is required" : ""}
+                fullWidth
+                {...field}
+              ></TextField>
+            )}
+          ></Controller>
         </ListItem>
         <ListItem>
-          <TextField
-            id="email"
-            variant="outlined"
-            fullWidth
-            label="Email"
-            inputProps={{ type: "email" }}
-            onChange={(e) => setEmail(e.target.value)}
-          ></TextField>
+          <Controller
+            name="email"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: true,
+              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            }}
+            render={({ field }) => (
+              <TextField
+                id="email"
+                variant="outlined"
+                label="Email"
+                inputProps={{ type: "email" }}
+                error={Boolean(errors.email)}
+                helperText={
+                  errors.email
+                    ? errors.email.type === "pattern"
+                      ? "Email is not valid"
+                      : "Email is required"
+                    : ""
+                }
+                fullWidth
+                {...field}
+              ></TextField>
+            )}
+          ></Controller>
         </ListItem>
         <ListItem>
           <Button
             type="submit"
             variant="contained"
-            onClick={regitrar}
             fullWidth
             color="primary"
             sx={{ mr: 5 }}
