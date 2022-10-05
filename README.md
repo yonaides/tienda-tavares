@@ -8,7 +8,7 @@ vercel https://tienda-tavares-qhde8jc04-yonaides.vercel.app/
 ## Buy Article
 You can buy some article with few click
 
-## video demostration
+## video demonstration
 
 ![alt text](https://github.com/yonaides/tienda-tavares/blob/main/tienda-tavares.gif "Logo Title Text 1")
 
