@@ -38,7 +38,7 @@ const CartProvider = ({ children }) => {
       ...item,
       quantity,
     };
-  
+
     //add ew item
     newProductCartList.push(newProduct);
 
@@ -48,12 +48,10 @@ const CartProvider = ({ children }) => {
 
   const isInCart = (itemId) => {
     const productExists = productCartList.find((item) => item.id === itemId);
-    
+
     if (productExists !== undefined) {
-      
       return true;
     } else {
-      console.log('false');
       return false;
     }
   };

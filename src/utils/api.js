@@ -1,5 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-
 import { db } from "./firebase";
 import {
   collection,
@@ -8,10 +7,23 @@ import {
   getDoc,
   where,
   query,
+  orderBy,
 } from "firebase/firestore";
 
 export default {
-  getData: async () => {
+  getOrders: async () => {
+    const q = query(collection(db, "orders"), orderBy("date"));
+    
+    const response = await getDocs(q);
+    
+    let allOrders = [];
+    response.forEach((doc) => {      
+      allOrders.push({ ...doc.data(), id: doc.id });
+    });
+
+    return allOrders;
+  },
+  getItems: async () => {
     const query = collection(db, "items");
     const response = await getDocs(query);
 
@@ -35,7 +47,6 @@ export default {
   },
 
   getFilterData: async (category) => {
-    console.log(category)
     const q = query(collection(db, "items"), where("category", "==", category));
 
     const response = await getDocs(q);
@@ -47,8 +58,4 @@ export default {
 
     return filterProduct;
   },
-  /*axios({
-      method: "GET",
-      url: `https://fakestoreapi.com/products/category/${category}`,
-    }),*/
 };

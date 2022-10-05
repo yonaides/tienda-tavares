@@ -7,11 +7,10 @@ import ItemListContainer from "./components/ItemListContainer";
 import NoMatch from "./components/NoMatch";
 import NavBar from "./components/NavBar";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import Contactos from "./components/Contactos";
-import Ofertas from "./components/Ofertas";
 import Filtros from "./components/Filtros";
 import CartContainer from "./components/CartContainer";
 import CheckOut from "./components/CheckOut";
+import OrderDetail from "./components/OrderDetail";
 
 function App() {
   return (
@@ -32,12 +31,11 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/cart" element={<CartContainer />} />
             <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/orders" element={<OrderDetail />} />
             <Route path="filtros/:category" element={<ItemListContainer />} />
             <Route path="/product">
               <Route path=":id" element={<ItemDetailContainer />} />
-            </Route>
-            <Route path="/contactos" element={<Contactos />} />
-            <Route path="/ofertas" element={<Ofertas />} />na
+            </Route>            
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </Container>

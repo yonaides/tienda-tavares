@@ -18,7 +18,7 @@ export default function ItemList({ category }) {
     function obtenerDatos() {
       if (category === undefined) {
         api
-          .getData()
+          .getItems()
           .then((response) => {
             setDatos(response);
             setLoading(false);

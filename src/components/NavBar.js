@@ -18,8 +18,7 @@ import CartWidget from "./CartWidget";
 
 const pages = [
   { name: `Home`, path: `/` },
-  { name: `Offers`, path: `/ofertas` },
-  { name: `Contacts`, path: `/contactos` },
+  { name: `Orders`, path: `/orders` }  
 ];
 
 const settings = ["Perfil", "Cuenta", "Logout"];
